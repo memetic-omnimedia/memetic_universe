@@ -1,6 +1,7 @@
-# Memetic Review
+# Memetic Universe
 
-A newspaper-style website for the Memetic Review publication.
+Digital Art Webpage. View at this link:
+https://memetic-omnimedia.github.io/memetic_universe/
 
 ## Project Structure
 
