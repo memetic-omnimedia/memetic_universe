@@ -1,30 +1,210 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <title>Memetic Universe Comic</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f0f0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-<body>
-    <img src="assets/MU-1-2.png" alt="MU-1-2">
-    <img src="assets/MU-1-3.png" alt="MU-1-3">
-    <img src="assets/MU-1-4.png" alt="MU-1-4">
-    <img src="assets/MU-1-5.png" alt="MU-1-5">
-    <img src="assets/MU-1-6.png" alt="MU-1-6">
-    <img src="assets/MU-1-7.png" alt="MU-1-7">
-</body>
+    <head>
+        <title>Memetic Universe Comic</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                padding: 20px;
+                background-color: #f0f0f0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            /* Panel container - holds image and text as one unit */
+            .panel {
+                display: flex;
+                align-items: center;
+                max-width: 1000px;
+                width: 100%;
+                margin-bottom: 30px;
+                gap: 0;
+            }
+
+            .panel.text-right {
+                flex-direction: row;
+            }
+
+            .panel.text-left {
+                flex-direction: row-reverse;
+            }
+
+            .panel img {
+                max-width: 60%;
+                height: auto;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                flex-shrink: 0;
+            }
+
+            /* Text box area */
+            .text-area {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 20px;
+                flex: 1;
+            }
+
+            /* Speech box with tail */
+            .speech-box {
+                position: relative;
+                background: #fff;
+                border: 2px solid #222;
+                border-radius: 8px;
+                padding: 15px 18px;
+                font-size: 14px;
+                line-height: 1.5;
+                color: #222;
+            }
+
+            /* Tail pointing left (for text-right panels) */
+            .panel.text-right .speech-box::before {
+                content: "";
+                position: absolute;
+                left: -12px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 0;
+                height: 0;
+                border-top: 10px solid transparent;
+                border-bottom: 10px solid transparent;
+                border-right: 12px solid #222;
+            }
+
+            .panel.text-right .speech-box::after {
+                content: "";
+                position: absolute;
+                left: -8px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 0;
+                height: 0;
+                border-top: 8px solid transparent;
+                border-bottom: 8px solid transparent;
+                border-right: 10px solid #fff;
+            }
+
+            /* Tail pointing right (for text-left panels) */
+            .panel.text-left .speech-box::before {
+                content: "";
+                position: absolute;
+                right: -12px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 0;
+                height: 0;
+                border-top: 10px solid transparent;
+                border-bottom: 10px solid transparent;
+                border-left: 12px solid #222;
+            }
+
+            .panel.text-left .speech-box::after {
+                content: "";
+                position: absolute;
+                right: -8px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 0;
+                height: 0;
+                border-top: 8px solid transparent;
+                border-bottom: 8px solid transparent;
+                border-left: 10px solid #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Frame 2 - text right -->
+        <div class="panel text-right">
+            <img src="assets/MU-1-2.png" alt="Frame 2" />
+            <div class="text-area">
+                <div class="speech-box">
+                    Ladies and Gentleman, The University put your hands together
+                    for Professor MacArthur, Head of the Center for Human
+                    Alignment, and leader of the Memetic Universe project!
+                </div>
+            </div>
+        </div>
+
+        <!-- Frame 3 - text left, two boxes -->
+        <div class="panel text-left">
+            <img src="assets/MU-1-3.png" alt="Frame 3" />
+            <div class="text-area">
+                <div class="speech-box">
+                    Good evening. I'm Dr. Amy MacArthur. I worked as an editor
+                    at the Times, then as an Public Information Officer during
+                    the war, and now I am the ranking party member in charge of
+                    the Center for Human Alignment within the Department of
+                    Memetics.
+                </div>
+                <div class="speech-box">
+                    The Center for Human Alignment was founded as part of the
+                    War on Hate initiative. We run the Memetic Universe project
+                    - our attempt to create a noosphere free of hate-inducing
+                    memeplexes. I am thrilled to tell you all that we have made
+                    SO MUCH progress.
+                </div>
+            </div>
+        </div>
+
+        <!-- Frame 4 - text right -->
+        <div class="panel text-right">
+            <img src="assets/MU-1-4.png" alt="Frame 4" />
+            <div class="text-area">
+                <div class="speech-box">
+                    None of this would be possible without Mindpods. I want to
+                    thank our partners at Sinotech and the Farahany institute
+                    who were instrumental in the innovations that make mindpods
+                    so amazing.
+                </div>
+            </div>
+        </div>
+
+        <!-- Frame 5 - text left -->
+        <div class="panel text-left">
+            <img src="assets/MU-1-5.png" alt="Frame 5" />
+            <div class="text-area">
+                <div class="speech-box">
+                    Mindpods are now widely used across the population. They use
+                    EEG, fMRI, and other passive imaging techniques to read
+                    people's brains. In addition, they cross-reference brain
+                    data with the media consumption profile of individuals. What
+                    this means is we can identify exactly what media - which
+                    memes - instatiate engrams of hate in the human brain.
+                </div>
+            </div>
+        </div>
+
+        <!-- Frame 6 - text right -->
+        <div class="panel text-right">
+            <img src="assets/MU-1-6.png" alt="Frame 6" />
+            <div class="text-area">
+                <div class="speech-box">
+                    The War on Hate has given us priveled access to the wider
+                    population's brain data and media data. All of this is fed
+                    into powerful AI models. The result is that we can not only
+                    identify all of the extant hateful memes in the population,
+                    we can also predict what memes are likely to cause hate in
+                    which individuals.
+                </div>
+            </div>
+        </div>
+
+        <!-- Frame 7 - text left -->
+        <div class="panel text-left">
+            <img src="assets/MU-1-7.png" alt="Frame 7" />
+            <div class="text-area">
+                <div class="speech-box">
+                    Thank you so much. We have made so much progress in the War
+                    on Hate and Human Alignment. Massive thanks to the
+                    University, we couldn't have done this without you.
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
