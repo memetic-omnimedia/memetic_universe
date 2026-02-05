@@ -1,7 +1,15 @@
 <!doctype html>
 <html>
     <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Memetic Universe Comic</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Bangers&display=swap"
+            rel="stylesheet"
+        />
         <style>
             * {
                 box-sizing: border-box;
@@ -10,11 +18,46 @@
             body {
                 margin: 0;
                 padding: 20px;
-                background-color: #f0f0f0;
+                background-color: #e8e4df;
+                background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                font-family: "Comic Neue", "Segoe UI", Tahoma, Geneva,
+                    Verdana, sans-serif;
+            }
+
+            /* Title header */
+            .comic-header {
+                max-width: 1000px;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 40px;
+                padding: 30px 20px 20px;
+            }
+
+            .comic-title {
+                font-family: "Bangers", cursive;
+                font-size: 3.5rem;
+                letter-spacing: 3px;
+                color: #1a1a1a;
+                margin: 0 0 8px;
+                text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+            }
+
+            .comic-subtitle {
+                font-size: 1rem;
+                color: #555;
+                margin: 0;
+                font-style: italic;
+            }
+
+            .comic-divider {
+                width: 120px;
+                height: 3px;
+                background: #222;
+                margin: 16px auto 0;
+                border-radius: 2px;
             }
 
             /* Panel container - holds image and text as one unit */
@@ -23,8 +66,17 @@
                 align-items: center;
                 max-width: 1000px;
                 width: 100%;
-                margin-bottom: 30px;
+                margin-bottom: 35px;
                 gap: 0;
+            }
+
+            /* Variable spacing for pacing */
+            .panel.pace-tight {
+                margin-bottom: 20px;
+            }
+
+            .panel.pace-wide {
+                margin-bottom: 55px;
             }
 
             .panel.text-right {
@@ -38,8 +90,9 @@
             .panel img {
                 max-width: 60%;
                 height: auto;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
                 flex-shrink: 0;
+                border: 1px solid rgba(0, 0, 0, 0.06);
             }
 
             /* Text box area */
@@ -58,13 +111,14 @@
                 border: 2px solid #222;
                 border-radius: 8px;
                 padding: 15px 18px;
-                font-size: 14px;
-                line-height: 1.5;
+                font-size: 15px;
+                font-weight: 400;
+                line-height: 1.6;
                 color: #222;
             }
 
-            /* Tail pointing left (for text-right panels) */
-            .panel.text-right .speech-box::before {
+            /* Only the first speech box in a text-area gets a tail */
+            .panel.text-right .speech-box:first-child::before {
                 content: "";
                 position: absolute;
                 left: -12px;
@@ -77,7 +131,7 @@
                 border-right: 12px solid #222;
             }
 
-            .panel.text-right .speech-box::after {
+            .panel.text-right .speech-box:first-child::after {
                 content: "";
                 position: absolute;
                 left: -8px;
@@ -90,8 +144,7 @@
                 border-right: 10px solid #fff;
             }
 
-            /* Tail pointing right (for text-left panels) */
-            .panel.text-left .speech-box::before {
+            .panel.text-left .speech-box:first-child::before {
                 content: "";
                 position: absolute;
                 right: -12px;
@@ -104,7 +157,7 @@
                 border-left: 12px solid #222;
             }
 
-            .panel.text-left .speech-box::after {
+            .panel.text-left .speech-box:first-child::after {
                 content: "";
                 position: absolute;
                 right: -8px;
@@ -116,11 +169,85 @@
                 border-bottom: 8px solid transparent;
                 border-left: 10px solid #fff;
             }
+
+            /* Continuation / end marker */
+            .comic-footer {
+                max-width: 1000px;
+                width: 100%;
+                text-align: center;
+                padding: 20px;
+                margin-top: 10px;
+                margin-bottom: 40px;
+            }
+
+            .comic-footer .end-mark {
+                font-family: "Bangers", cursive;
+                font-size: 1.4rem;
+                letter-spacing: 2px;
+                color: #555;
+            }
+
+            .comic-footer .footer-divider {
+                width: 60px;
+                height: 3px;
+                background: #aaa;
+                margin: 12px auto;
+                border-radius: 2px;
+            }
+
+            /* Responsive: stack panels on narrow screens */
+            @media (max-width: 700px) {
+                body {
+                    padding: 12px;
+                }
+
+                .comic-title {
+                    font-size: 2.2rem;
+                }
+
+                .panel,
+                .panel.text-right,
+                .panel.text-left {
+                    flex-direction: column;
+                    margin-bottom: 28px;
+                }
+
+                .panel.pace-tight {
+                    margin-bottom: 18px;
+                }
+
+                .panel.pace-wide {
+                    margin-bottom: 40px;
+                }
+
+                .panel img {
+                    max-width: 100%;
+                }
+
+                .text-area {
+                    padding: 15px 5px 0;
+                }
+
+                /* Remove side tails on mobile, not needed when stacked */
+                .panel.text-right .speech-box:first-child::before,
+                .panel.text-right .speech-box:first-child::after,
+                .panel.text-left .speech-box:first-child::before,
+                .panel.text-left .speech-box:first-child::after {
+                    display: none;
+                }
+            }
         </style>
     </head>
     <body>
-        <!-- Frame 2 - text right -->
-        <div class="panel text-right">
+        <!-- Comic header -->
+        <header class="comic-header">
+            <h1 class="comic-title">Memetic Universe</h1>
+            <p class="comic-subtitle">Issue 1</p>
+            <div class="comic-divider"></div>
+        </header>
+
+        <!-- Frame 2 - opening panel, tight pace into introduction -->
+        <div class="panel text-right pace-tight">
             <img src="assets/MU-1-2.png" alt="Frame 2" />
             <div class="text-area">
                 <div class="speech-box">
@@ -131,8 +258,8 @@
             </div>
         </div>
 
-        <!-- Frame 3 - text left, two boxes -->
-        <div class="panel text-left">
+        <!-- Frame 3 - text left, two boxes, wide pace after intro -->
+        <div class="panel text-left pace-wide">
             <img src="assets/MU-1-3.png" alt="Frame 3" />
             <div class="text-area">
                 <div class="speech-box">
@@ -152,8 +279,8 @@
             </div>
         </div>
 
-        <!-- Frame 4 - text right -->
-        <div class="panel text-right">
+        <!-- Frame 4 - text right, tight into explanation -->
+        <div class="panel text-right pace-tight">
             <img src="assets/MU-1-4.png" alt="Frame 4" />
             <div class="text-area">
                 <div class="speech-box">
@@ -165,7 +292,7 @@
             </div>
         </div>
 
-        <!-- Frame 5 - text left -->
+        <!-- Frame 5 - text left, default pace -->
         <div class="panel text-left">
             <img src="assets/MU-1-5.png" alt="Frame 5" />
             <div class="text-area">
@@ -180,7 +307,7 @@
             </div>
         </div>
 
-        <!-- Frame 6 - text right -->
+        <!-- Frame 6 - text right, default pace -->
         <div class="panel text-right">
             <img src="assets/MU-1-6.png" alt="Frame 6" />
             <div class="text-area">
@@ -195,8 +322,8 @@
             </div>
         </div>
 
-        <!-- Frame 7 - text left -->
-        <div class="panel text-left">
+        <!-- Frame 7 - text left, wide pace before ending -->
+        <div class="panel text-left pace-wide">
             <img src="assets/MU-1-7.png" alt="Frame 7" />
             <div class="text-area">
                 <div class="speech-box">
@@ -206,5 +333,11 @@
                 </div>
             </div>
         </div>
+
+        <!-- End marker -->
+        <footer class="comic-footer">
+            <div class="footer-divider"></div>
+            <p class="end-mark">To Be Continued...</p>
+        </footer>
     </body>
 </html>
